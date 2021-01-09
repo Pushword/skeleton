@@ -6,12 +6,13 @@
   "homepage": "https://pushword.piedweb.com",
   "license": "MIT",
   "require": {
-    "puswhord/core": "^0.0"
+    "pushword/core": "^0.0"
   },
   "require-dev": {},
   "extra": {
     "branch-alias": {
-      "dev-master": "0.x-dev"
+      "dev-master": "0.0.x-dev",
+      "dev-main": "0.0.x-dev"
     }
   },
   "autoload": {},
