@@ -18,18 +18,18 @@ class AppFixtures extends Fixture
     private AppPool $apps;
 
     /** @required */
-    public function setParameterBag(ParameterBagInterface $params)
+    public function setParameterBag(ParameterBagInterface $params): void
     {
         $this->params = $params;
     }
 
     /** @required */
-    public function setApps(AppPool $apps)
+    public function setApps(AppPool $apps): void
     {
         $this->apps = $apps;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $user = (new User())
             ->setEmail('contact@piedweb.com')
