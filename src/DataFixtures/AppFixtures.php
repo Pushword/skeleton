@@ -8,7 +8,6 @@ use App\Entity\User;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use LogicException;
 use Pushword\Core\Component\App\AppPool;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -43,10 +42,8 @@ class AppFixtures extends Fixture
             'Demo 1' => '1.jpg',
             'Demo 2' => '2.jpg',
         ];
+        $media = [];
         foreach ($medias as $name => $file) {
-            if (! isset($media[$name])) {
-                throw new LogicException();
-            }
             $media[$name] = (new Media())
             ->setProjectDir($this->params->get('kernel.project_dir'))
             ->setStoreIn($this->params->get('pw.media_dir'))
