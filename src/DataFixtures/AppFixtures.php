@@ -63,7 +63,7 @@ class AppFixtures extends Fixture
             ->setLocale('en')
             ->setCreatedAt(new DateTime('2 days ago'))
             ->setUpdatedAt(new DateTime('2 days ago'))
-            ->setMainContent(file_get_contents(__DIR__.'/WelcomePage.md'));
+            ->setMainContent((string) file_get_contents(__DIR__.'/WelcomePage.md'));
 
         if ('localhost.dev' == $this->apps->getMainHost()) {
             $homepage->setHost('localhost.dev');
@@ -80,7 +80,7 @@ class AppFixtures extends Fixture
             ->setParentPage($homepage)
             ->setCreatedAt(new DateTime('1 day ago'))
             ->setUpdatedAt(new DateTime('1 day ago'))
-            ->setMainContent(file_get_contents(__DIR__.'/KitchenSink.md'))
+            ->setMainContent((string) file_get_contents(__DIR__.'/KitchenSink.md'))
             ->setCustomProperty('tag', 'testTag123');
 
         if ('localhost.dev' == $this->apps->getMainHost()) {
