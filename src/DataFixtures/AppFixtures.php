@@ -2,12 +2,12 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Media;
-use App\Entity\Page;
-use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Pushword\Core\Component\App\AppPool;
+use Pushword\Core\Entity\Media;
+use Pushword\Core\Entity\Page;
+use Pushword\Core\Entity\User;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Contracts\Service\Attribute\Required;
 
@@ -82,8 +82,9 @@ class AppFixtures extends Fixture
             ->setParentPage($homepage)
             ->setCreatedAt(new \DateTime('1 day ago'))
             ->setUpdatedAt(new \DateTime('1 day ago'))
-            ->setMainContent((string) file_get_contents(__DIR__.'/KitchenSink.md'))
-            ->setCustomProperty('tag', 'testTag123');
+            ->setMainContent((string) file_get_contents(__DIR__.'/KitchenSink.md'));
+
+        $ksPage->setCustomProperty('tag', 'testTag123');
 
         if ('localhost.dev' == $this->apps->getMainHost()) {
             $ksPage->setHost('localhost.dev');

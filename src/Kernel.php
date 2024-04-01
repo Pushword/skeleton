@@ -17,9 +17,11 @@ class Kernel extends BaseKernel
 
     // private const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
+    /** @psalm-suppress all */
     public function registerBundles(): iterable
     {
-        $contents = require $this->getProjectDir().'/config/bundles.php';
+        $bundlesFilePath = $this->getProjectDir().'/config/bundles.php';
+        $contents = require $bundlesFilePath;
         foreach ($contents as $class => $envs) {
             if ($envs[$this->environment] ?? $envs['all'] ?? false) {
                 yield new $class(); // @phpstan-ignore-line
