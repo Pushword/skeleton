@@ -61,7 +61,7 @@ class AppFixtures extends Fixture
         $manager->flush();
 
         $homepage = (new Page())
-            ->setH1('Welcome : this is your first page')
+            ->setH1('Welcome to Pushword !')
             ->setSlug('homepage')
             ->setLocale('en')
             ->setCreatedAt(new DateTime('2 days ago'))
