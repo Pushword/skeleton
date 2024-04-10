@@ -1,11 +1,34 @@
-You just succeed to install **Pushword/Core**.
+You just succeed to install **Pushword**.
 
-You are on your future **homepage**.
+You are on your future **homepage**. [Look at the docs](https://pushword.piedweb.com/configuration) to configure and customize your own Pushword website.
 
-Did you install the [admin extension](https://pushword.piedweb.com/extension/admin) or the [flat file extension](https://pushword.piedweb.com/extension/flat) to edit this one ?
+Have fun,<br>
+[Robin](https://piedweb.com)
 
-Maybe you prefer to look at the [kitchen sink](/kitchen-sink).
+{% set items = [
+  {
+    'image'  : '3',
+    'title'  : 'Configure it',
+    'link'    : 'https://pushword.piedweb.com/configuration',
+  },
+  {
+    'image'  : '1',
+    'title'  : 'Template it',
+    'link'    : 'https://pushword.piedweb.com/themes',
+  },
+  {
+    'image'  : '2',
+    'title'  : 'Extend it',
+    'link'    : 'https://pushword.piedweb.com/extensions',
+  },
+] %}
 
-Have Fun,
-
-Robin From [Pied Web](https://piedweb.com)
+<div class="not-prose lg:-mx-40 my-6 md:-mx-20">
+  <ul class="flex flex-row my-5 flex-wrap justify-center mx-auto">
+    {% for item in items %}
+      <li class="w-full px-2 my-1 sm:w-1/2 md:w-1/3">
+        {% include view('/component/card.html.twig') with item only %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

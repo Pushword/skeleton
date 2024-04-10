@@ -42,6 +42,7 @@ class AppFixtures extends Fixture
             'Pied Web Logo' => 'piedweb-logo.png',
             'Demo 1' => '1.jpg',
             'Demo 2' => '2.jpg',
+            'Demo 3' => '3.jpg',
         ];
         $media = [];
         foreach ($medias as $name => $file) {
@@ -63,10 +64,13 @@ class AppFixtures extends Fixture
         $homepage = (new Page())
             ->setH1('Welcome to Pushword !')
             ->setSlug('homepage')
+            ->setMainImage($media['Demo 2'])
             ->setLocale('en')
             ->setCreatedAt(new DateTime('2 days ago'))
             ->setUpdatedAt(new DateTime('2 days ago'))
             ->setMainContent((string) file_get_contents(__DIR__.'/WelcomePage.md'));
+
+        $homepage->setCustomProperty('mainImageFormat', 1);
 
         if ('localhost.dev' == $this->apps->getMainHost()) {
             $homepage->setHost('localhost.dev');

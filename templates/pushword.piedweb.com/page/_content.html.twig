@@ -1,6 +1,6 @@
 {% extends '@Pushword/page/_content.html.twig' %}
 
-{% set container = 'p-3 '~ (page.prose ? page.prose : 'prose dark:prose-light') ~' max-w-3xl' %}
+{% set container = 'p-3 ' ~ (page.prose ? page.prose : 'prose dark:prose-light') ~ ' max-w-3xl' %}
 
 {% block toc %}{% endblock %}
 
@@ -50,8 +50,7 @@
         <div class="p-5 pt-5 mx-3 text-yellow-800 border-l-4 border-yellow-500 bg-yellow-50">
             {{ svg('exclamation-triangle') }} ...
         </div>
-    {% endif %}#}
-
+    {% endif %} #}
 
     {% if page.slug != 'homepage' %}
     <div class="flex max-w-3xl mx-3 mt-5">
@@ -71,7 +70,6 @@
     <div class="pb-10"></div>
 
 {% endblock %}
-
 
 {% macro next(nav, page) %}
     {% set next_is_the_one = false %}
@@ -93,7 +91,6 @@
 
 {% macro previous(nav, page) %}
 
-
     {% set previous = null %}
 
     {% for n in nav %}
@@ -107,6 +104,5 @@
             {% set previous = n %}
         {% endif %}
     {% endfor %}
-
 
 {% endmacro %}
