@@ -1,88 +1,87 @@
-A few example for the editor possibilities. Best to observe this, it's in admin with split editor (live preview Side By Side).
+A few example for the editor possibilities. Best to observe this, it’s in admin with split editor (live preview Side By Side).
+
+---
+
+## Inline Tool Demo
+
+See **bold** _italic_ `inline code` #[link](/kitchen-sink-block{target="_blank"}) <mark>marker</mark> ~~strikethrough~~
 
 ## Links & Routes
 
-- [Homepage]({{ homepage() }})
-- [Current Page]({{ page(page) }})
+- [Homepage](/)
+- Current Page: {{ page(page) }}
 - Get Url : {{ page('what-you-want-in-same-app') }}
 - Canonical with base: {{ page(page, true) }}
-- Encrypted Link : {{ link('Pied Web', 'https://piedweb.com/') }}
-- Self Encrypted Link: {{ link('Pied Web', page) }}
-- contact@piedweb.com ou {{ mail('contact@piedweb.com') }}
+- Obfuscated Link : [Pied Web](https://piedweb.com) — contact@piedweb.com ou {{ mail('contact@piedweb.com') }}
 - {{ tel('+33 00 00 00 00') }} ou directement +331 00 00 00 00
+- [AnchorLink](#citation)
 
 ## Quotes
 
+{#citation}
+
 > PHP ecosystem is undeniably awesome! With its extensive library of frameworks like Laravel and Symfony, coupled with its flexibility and scalability, PHP empowers developers to build robust and dynamic web applications effortlessly. Its active community constantly contributes to its evolution, ensuring it stays relevant and cutting-edge. Whether it's for small projects or enterprise-level applications, PHP remains a top choice for developers worldwide. In short, PHP rocks!
+> — <cite>Author</cite>
 
 ## Images et Galleries
 
-## Simple Image
+### Simple Image
 
-![1](/media/default/1.jpg)
+![Demo 3](/media/3.jpg)
 
-![2](2.jpg)
+### Gallery
 
-## Gallery
+{{ gallery({"1.jpg":"","2.jpg":"","3.jpg":""})|unprose }}
 
-{{ gallery(['piedweb-logo.png', '1.jpg', '2.jpg', '3.jpg'])|unprose }}
+## Advanced gallery
 
-## Not clickable Gallery
-
-(first element with a custom link)
-
-{{ gallery([ ['piedweb-logo.png', 'https://piedweb.com', {}, false], '1.jpg', '2.jpg', '3.jpg'], clickable=false)|unprose }}
+{{ gallery({'piedweb-logo.png': ['pied web logo', 'https://piedweb.com', {}, false], '1.jpg': '', '2.jpg': '', '3.jpg': ''}, clickable=false)|unprose }}
 
 ## Video
 
-Avoiding load Youtube cookies per default.
+{{ video('https://www.youtube.com/watch?v=Nwyylc9GQuQ', '3.jpg', 'SuperVideo')|unprose }}
 
-{{ video('https://www.youtube.com/watch?v=Nwyylc9GQuQ', '/media/default/3.jpg')|unprose }}
-
-or open an iframe
+## Video in a popup
 
 {{ video('https://www.youtube.com/watch?v=Nwyylc9GQuQ', '/media/default/3.jpg', 'my video title', true)|unprose }}
 
-## Advanced
+## Table Example
 
-- Get a theme component
+| Fonctionnalité | Statut   | Notes                     |
+| -------------- | -------- | ------------------------- |
+| Table          | ✅ Testé | Nouveau dans Kitchen Sink |
+| Attaches       | ✅ Testé | Gestion des fichiers      |
+| Delimiter      | ✅ Testé | Séparateur de contenu     |
+| linkTune       | ✅ Testé | Liens sur images          |
+
+## Code Block
+
+```html
+<div>{{ hello }} {% include view('codeblockTest.html.twig') %}</div>
+```
+
+<p data-attribute="this attribute permits to avoid paragraph normalization">Example Raw Html</p>
 
 ## Render Page List
 
 ### Page found via Kw
 
-{{  pages_list('content:fun', 3) }}
+{{ pages_list('content:fun', '9', 'publishedAt ↓', 'list') }}
 
-{{  pages_list('content:Fun', [3, 3], 'publishedAt DESC', 'card')|unprose }}
+{{ pages_list('content:fun', '9', 'publishedAt ↓', 'card') }}
 
-### Or 100% custom card
+[Continue your exploration with the docs ➜](https://pushword.piedweb.com)
 
-{% set items = [
-  {
-    'image'  : '3',
-    'title'  : 'Incredible Igloo builder in France',
-    'link'    : 'https://altimood.com/en',
-  },
-  {
-    'image'  : '1',
-    'title'  : 'Understanding the north lights',
-    'link'    : 'https://en.wikipedia.org/wiki/North_light',
-  },
-  {
-    'image'  : '2',
-    'title'  : 'Unleash the power of Online Presence',
-    'link'    : 'https://piedweb.com',
-  },
-] %}
+## Attachments & Files
 
-<div class="not-prose lg:-mx-40 my-6 md:-mx-20">
-  <ul class="flex flex-row my-5 flex-wrap justify-center mx-auto">
-    {% for item in items %}
-      <li class="w-full px-1 my-1 sm:w-1/2 md:w-1/3">
-        {% include view('/component/card.html.twig') with item only %}
-      </li>
-    {% endfor %}
-  </ul>
-</div>
+{{ attaches('Document JPG 2', '/media/2.jpg', '0' )|unprose }}
 
-<a href="https://pushword.piedweb.com" class="btn btn-primary">See the docs</a>
+Texte avec <u>soulignement</u>, **gras**, _italique_, <mark>surlignage</mark> et ~~barré~~ pour tester tous les outils inline.
+
+## Image avec Lien (linkTune)
+
+[![Image cliquable vers la documentation](/media/2.jpg)](https://pushword.piedweb.com)
+
+## HR — separator
+
+---
