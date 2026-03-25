@@ -24,10 +24,5 @@
     }
   ],
   "minimum-stability": "dev",
-  "prefer-stable": true,
-  "config": {
-    "allow-plugins": {
-      "symfony/runtime": true
-    }
-  }
+  "prefer-stable": true
 }
