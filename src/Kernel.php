@@ -22,24 +22,25 @@ class Kernel extends BaseKernel
 
     public function getCacheDir(): string
     {
-        // Persistent shared cache so workers reuse the compiled container.
-        // The dir is shared across all test runs/workers — Symfony invalidates it
-        // automatically by tracking source file resources in the cache metadata.
+        // Use a persistent shared cache dir so the compiled container is reused across test workers
         if ('test' === $this->environment) {
             return sys_get_temp_dir().'/com.github.pushword.pushword/container-cache/'.$this->environment;
         }
 
-        // Dev cache lives under /tmp so phpstan-symfony can find the compiled
-        // container at a deterministic location (see phpstan.dist.neon).
-        return sys_get_temp_dir().'/com.github.pushword.pushword/tests/var/'.$this->environment.'/cache';
+        return $this->getTestBaseDir().'/cache';
     }
 
     public function getLogDir(): string
     {
-        // Shared across workers — the path is baked into the compiled container,
-        // so it cannot vary per worker. Tests that need per-worker file isolation
-        // must allocate their own subdirectory.
-        return sys_get_temp_dir().'/com.github.pushword.pushword/tests/var/'.$this->environment.'/log';
+        return $this->getTestBaseDir().'/log';
+    }
+
+    private function getTestBaseDir(): string
+    {
+        $runId = \is_string($_ENV['TEST_RUN_ID'] ?? null) ? $_ENV['TEST_RUN_ID'] : (\is_string($_SERVER['TEST_RUN_ID'] ?? null) ? $_SERVER['TEST_RUN_ID'] : '');
+        $segment = '' !== $runId ? '/'.$runId : '';
+
+        return sys_get_temp_dir().'/com.github.pushword.pushword/tests'.$segment.'/var/'.$this->environment;
     }
 
     protected function configureContainer(ContainerConfigurator $container): void
